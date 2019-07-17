@@ -1,7 +1,9 @@
 package utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -26,6 +28,13 @@ public class TestBase {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
+        Driver.getDriver().get("http://54.148.96.210/web/login");
+        WebElement usernameInput = Driver.getDriver().findElement(By.id("login"));
+        usernameInput.sendKeys("EventsCRM_Manager8@info.com");
+        WebElement passwordInput = Driver.getDriver().findElement(By.id("password"));
+        passwordInput.sendKeys("Ugh45wQ19");
+        WebElement loginButton = Driver.getDriver().findElement(By.xpath("//button[@type='submit']"));
+        loginButton.click();
     }
 
 
