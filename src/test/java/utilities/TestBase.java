@@ -1,6 +1,7 @@
 package utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import leavesPages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,18 +24,23 @@ public class TestBase {
 
     @BeforeMethod
 
-    public void setUp(){
+    public void setUp()throws InterruptedException{
 
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
         Driver.getDriver().get("http://54.148.96.210/web/login");
-        WebElement usernameInput = Driver.getDriver().findElement(By.id("login"));
-        usernameInput.sendKeys("EventsCRM_Manager8@info.com");
-        WebElement passwordInput = Driver.getDriver().findElement(By.id("password"));
-        passwordInput.sendKeys("Ugh45wQ19");
-        WebElement loginButton = Driver.getDriver().findElement(By.xpath("//button[@type='submit']"));
-        loginButton.click();
+
+        LoginPage leavesLP = new LoginPage();
+        leavesLP.ERPLogin("EventsCRM_Manager8@info.com","Ugh45wQ19");
+
+
+//        WebElement usernameInput = Driver.getDriver().findElement(By.id("login"));
+//        usernameInput.sendKeys("EventsCRM_Manager8@info.com");
+//        WebElement passwordInput = Driver.getDriver().findElement(By.id("password"));
+//        passwordInput.sendKeys("Ugh45wQ19");
+//        WebElement loginButton = Driver.getDriver().findElement(By.xpath("//button[@type='submit']"));
+//        loginButton.click();
     }
 
 
