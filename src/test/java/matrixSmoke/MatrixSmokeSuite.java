@@ -48,5 +48,21 @@ public class MatrixSmokeSuite extends TestBase {
         softAssert.assertAll();
     }
 
-
+@Test
+public void searchFilterByApproved()throws InterruptedException{
+    WebElement leavesKey=Driver.getDriver().findElement(By.xpath("//*[@id='oe_main_menu_navbar']//ul/li[12]"));
+    leavesKey.click();
+    WebElement addSearchFilter=Driver.getDriver().findElement(By.xpath("//div[1]/div[2]/div[1]/div[1]/div/span"));
+    addSearchFilter.click();
+    Thread.sleep(2000);
+    WebElement filterButton=Driver.getDriver().findElement(By.xpath("//div[3]/div[1]/div[1]/button"));
+    filterButton.click();
+    WebElement approvedFilterButton=Driver.getDriver().findElement(By.xpath("//div[1]/div[3]/div[1]/div[1]//li[2]/a"));
+    approvedFilterButton.click();
+    WebElement search=Driver.getDriver().findElement(By.xpath("//div[1]/div[2]/div[1]/div[1]/div"));
+    String expected="Approved Leaves";
+    String actual=search.getText();
+    Assert.assertTrue(actual.contains(expected));
+    Assert.assertTrue(approvedFilterButton.isDisplayed());
+}
 }
